@@ -46,13 +46,24 @@ section {
   position: relative;
 }
 
-.bounding{
+#mele {
   width: fit-content;
+  overflow: hidden;
+  position: relative;
   /* background-color: coral; */
+}
+
+#mele .meleelem {
+  transform: translateY(100%);
+  display: inline-block; /* Required so transform affects the element properly */
+}
+
+.bounding {
+  width: fit-content;
   overflow: hidden;
 }
 
-.bounding .boundingelem{
+.bounding .boundingelem {
   transform: translateY(100%);
 }
 
@@ -89,14 +100,13 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: flex-end; /* Align children to bottom */
-  align-items: flex-end;     /* Align children to right */
+  align-items: flex-end; /* Align children to right */
 }
 
 #heading #second h5 {
   font-size: 1.5vw;
   text-align: right;
 }
-
 
 #rightheadings {
   margin-top: 10vh;
@@ -196,16 +206,19 @@ section {
 
 .elem img {
   position: absolute;
+  pointer-events: none; /* Prevent the image from capturing mouse events */
   width: 15vw;
+  padding: 0;
+  margin: 0;
   z-index: 9;
-  display: none;
+  opacity: 0;
+  border-radius: 10px;
 }
 
 .elemlast img {
   position: absolute;
   width: 15vw;
   z-index: 9;
-  display: none;
 }
 
 #about {
