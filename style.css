@@ -17,8 +17,6 @@ section {
   background: linear-gradient(90deg, #ff7a18, #af002d 70%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  /* Optional for better cross-browser support */
   background-clip: text;
   color: transparent;
 }
@@ -41,7 +39,7 @@ section {
 #hero {
   color: #fff;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: black;
   position: relative;
 }
@@ -50,12 +48,11 @@ section {
   width: fit-content;
   overflow: hidden;
   position: relative;
-  /* background-color: coral; */
 }
 
 #mele .meleelem {
   transform: translateY(100%);
-  display: inline-block; /* Required so transform affects the element properly */
+  display: inline-block;
 }
 
 .bounding {
@@ -72,6 +69,7 @@ section {
   padding: 20px 40px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 #nav a {
@@ -90,7 +88,7 @@ section {
 }
 
 #heading h1 {
-  font-size: 9vw;
+  font-size: clamp(2rem, 9vw, 6rem);
   line-height: 0.8;
   opacity: 0.6;
 }
@@ -99,8 +97,8 @@ section {
   margin-left: 10vw;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Align children to bottom */
-  align-items: flex-end; /* Align children to right */
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 #heading #second h5 {
@@ -119,7 +117,6 @@ section {
 }
 
 #hero #rightheadings h5 {
-  /* text-align: right; */
   margin-top: 0.4vw;
   font-size: 1vw;
 }
@@ -132,6 +129,7 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 #hero #footer a {
@@ -141,7 +139,6 @@ section {
 
 #footer #iconset {
   display: flex;
-  flex-direction: row;
   gap: 0.5vw;
 }
 
@@ -166,10 +163,11 @@ section {
   padding-right: 10vw;
   padding-left: 3vw;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-.elem {
+.elem,
+.elemlast {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -180,54 +178,33 @@ section {
   border-top: 1px solid #888;
 }
 
-.elem h1 {
-  font-size: 6vw;
-  opacity: 0.7;
-  font-weight: 400;
-}
-
-.elemlast h1 {
-  font-size: 6vw;
-  opacity: 0.7;
-  font-weight: 400;
-}
-
 .elemlast {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  width: 100%;
-  padding: 1.9vw 1vw;
-  padding-right: 0;
-  border-top: 1px solid #888;
   border-bottom: 1px solid #888;
 }
 
-.elem img {
+.elem h1,
+.elemlast h1 {
+  font-size: clamp(1.5rem, 6vw, 4rem);
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+.elem img,
+.elemlast img {
   position: absolute;
-  pointer-events: none; /* Prevent the image from capturing mouse events */
+  pointer-events: none;
   width: 15vw;
-  padding: 0;
-  margin: 0;
   z-index: 9;
   opacity: 0;
   border-radius: 10px;
 }
 
-.elemlast img {
-  position: absolute;
-  width: 15vw;
-  z-index: 9;
-}
-
 #about {
   color: #fff;
   background-color: black;
-  padding-right: 9vw;
-  padding-left: 25vw;
+  padding: 5vw 10vw;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -236,18 +213,18 @@ section {
 }
 
 #imageabout {
-  width: 250px;
-  height: 250px;
+  width: 40vw;
+  height: 40vw;
+  max-width: 250px;
+  max-height: 250px;
   background-image: url("./imgs/about.jpg");
   border: 1px solid red;
   background-size: cover;
-  /* background-position: center; */
   border-radius: 50%;
 }
 
 #infoabout {
   width: 40%;
-  /* text-align: right; */
 }
 
 #infoabout h5 {
@@ -266,14 +243,14 @@ section {
   padding: 10px 22px;
   text-decoration: none;
   border-radius: 5px;
+  display: inline-block;
 }
 
 #subscribe {
   width: 100%;
   background-color: black;
   color: #fff;
-  padding-bottom: 15vh;
-  padding-left: 3vw;
+  padding: 5vh 3vw 15vh;
   font-weight: 200;
 }
 
@@ -285,6 +262,7 @@ section {
 
 #subscribe h3 {
   font-weight: 400;
+  font-size: 1.8rem;
 }
 
 #footer {
@@ -293,20 +271,15 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row;
+  flex-wrap: wrap;
   padding: 30px;
 }
 
-#footerleft {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-}
-
+#footerleft,
 #footerright {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 #footerleft h5 {
@@ -315,4 +288,103 @@ section {
 
 #footerright h5 {
   padding-left: 30px;
+}
+
+/* ============ RESPONSIVE MEDIA QUERIES ============= */
+
+@media (max-width: 1024px) {
+  #heading {
+    margin: 30px;
+    padding-right: 10vw;
+  }
+
+  #heading #second {
+    margin-left: 5vw;
+  }
+
+  #about {
+    flex-direction: column;
+    padding: 10vw 5vw;
+  }
+
+  #infoabout {
+    width: 100%;
+    text-align: center;
+  }
+
+  #subscribe h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  #heading {
+    padding-right: 0;
+    margin-top: 20vw;
+  }
+
+  #heading #second {
+    align-items: flex-start;
+    margin-left: 0;
+  }
+
+  .elem h1,
+  .elemlast h1 {
+    font-size: 8vw;
+  }
+
+  #footer,
+  #footerleft,
+  #footerright {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #footerleft h5,
+  #footerright h5 {
+    padding: 10px 0;
+  }
+
+  #imageabout {
+    width: 60vw;
+    height: 60vw;
+  }
+}
+
+@media (max-width: 480px) {
+  #heading h1 {
+    font-size: 11vw;
+  }
+
+  #heading #second h5 {
+    font-size: 3vw;
+  }
+
+  #infoabout p {
+    font-size: 0.9rem;
+  }
+
+  #subscribe h3 {
+    font-size: 1.2rem;
+  }
+
+  #nav h4 {
+    font-size: 1.2rem;
+  }
+
+  #hero #footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #imageabout {
+    width: 70vw;
+    height: 70vw;
+  }
 }
